@@ -1,0 +1,16 @@
+html
+  head
+    title I'm not a bot
+  body
+    form(method="POST")
+      p !{captcha}
+      button(type='submit') Go
+    script.
+        function cb(token){
+            console.log('token', token);
+            var input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.setAttribute('name', 'g-recaptcha-response');
+            input.setAttribute('value', token);
+            document.getElementsByTagName('form')[0].appendChild(input);
+        }

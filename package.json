@@ -1,0 +1,28 @@
+{
+  "name": "cgar",
+  "version": "1.0.0",
+  "description": "CAPTCHA gated archive retriever.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bettercallshao/cgar.git"
+  },
+  "author": "bettercallshao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bettercallshao/cgar/issues"
+  },
+  "homepage": "https://github.com/bettercallshao/cgar#readme",
+  "dependencies": {
+    "aws-sdk": "^2.596.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-recaptcha": "^5.0.1",
+    "jade": "^1.11.0",
+    "js-yaml": "^3.13.1",
+    "s3-streams": "^0.4.0"
+  }
+}

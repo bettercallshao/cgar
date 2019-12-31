@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "pug");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

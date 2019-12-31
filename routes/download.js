@@ -1,6 +1,5 @@
 const Recaptcha = require("express-recaptcha").RecaptchaV2;
 const S3 = require("aws-sdk").S3;
-const S3S = require("s3-streams");
 const router = require("express").Router();
 const config = require("../config");
 
@@ -20,20 +19,20 @@ config.downloads.forEach(el => {
       res.status(400);
       res.render("error");
     } else {
-      let download = S3S.ReadStream(
-        new S3({
-          accessKeyId: el.accessKeyId,
-          secretAccessKey: el.secretAccessKey,
-          endpoint: el.endpoint,
-          s3ForcePathStyle: true,
-          signatureVersion: "v4"
-        }),
-        {
-          Bucket: el.bucket,
-          Key: el.key
-        }
-      );
-      download.pipe(res);
+      res.attachment(el.key);
+      let s3 = new S3({
+        accessKeyId: el.accessKeyId,
+        secretAccessKey: el.secretAccessKey,
+        endpoint: el.endpoint,
+        s3ForcePathStyle: true,
+        signatureVersion: "v4"
+      });
+      s3.getObject({
+        Bucket: el.bucket,
+        Key: el.key
+      })
+        .createReadStream()
+        .pipe(res);
     }
   });
 });
